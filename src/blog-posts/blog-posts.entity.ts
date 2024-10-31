@@ -1,8 +1,8 @@
-import { Enitity, Column, PrimaryGenertedColumn } from 'typeorm';
+import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
 
 @Entity()
 export class BlogPost {
-  @PrimaryGenertedColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -12,6 +12,11 @@ export class BlogPost {
   content: string;
 
   @Column()
+  writtenBy: string; // will be foreign key in future
+  
+  @Column({
+    default: false
+  })
   isPublished: boolean;
 }
 
