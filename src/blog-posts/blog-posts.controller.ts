@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { BlogPostsService } from './blog-posts.service';
 import { IEdit } from './interfaces/blog-post.interface';
+import { CreateBlogPostDto } from './dtos/create-blog-post.dto';
 
 @Controller('blog-posts')
 export class BlogPostsController {
@@ -14,8 +15,10 @@ export class BlogPostsController {
   }
 
   @Post()
-  createBlogPost(@Body('title') title: string, @Body('content') content: string, @Body('writtenBy') writtenBy: string) {
-    return this.blogPostsService.createBlogPost(title, content, writtenBy);
+  @UsePipes(new ValidationPipe({ whitelist: true }))
+  createBlogPost(@Body() createBlogPost: CreateBlogPostDto) {
+    console.log({ createBlogPost })
+    return this.blogPostsService.createBlogPost(createBlogPost);
   }
 
   @Patch(':id')

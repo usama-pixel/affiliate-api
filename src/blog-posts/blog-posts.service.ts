@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BlogPost } from './blog-posts.entity'
 import { IEdit } from './interfaces/blog-post.interface';
+import { CreateBlogPostDto } from './dtos/create-blog-post.dto';
 
 @Injectable()
 export class BlogPostsService {
@@ -12,14 +13,13 @@ export class BlogPostsService {
     return this.repo.find()
   }
 
-  async createBlogPost(title, content: string, writtenBy: string) {
+  async createBlogPost({title, content, writtenBy}: CreateBlogPostDto) {
     const blogPost = this.repo.create({
       content,
       writtenBy,
       title,
     })
     this.repo.save(blogPost)
-    console.log({blogPost})
     return blogPost
   }
   async editBlogPost(id: number, body: IEdit) {
