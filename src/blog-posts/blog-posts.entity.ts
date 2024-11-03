@@ -1,6 +1,6 @@
 import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
 
-@Entity()
+@Entity('blog_posts')
 export class BlogPost {
   @PrimaryGeneratedColumn()
   id: number;
@@ -18,5 +18,13 @@ export class BlogPost {
     default: false
   })
   isPublished: boolean;
-}
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date
+
+  @Column({ type: 'timestamp', default: null })
+  deletedAt: Date
+}

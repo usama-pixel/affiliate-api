@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { BlogPostsService } from './blog-posts.service';
 import { IEdit } from './interfaces/blog-post.interface';
 import { CreateBlogPostDto } from './dtos/create-blog-post.dto';
+import { PositiveIntPipe } from './pipes/positive-int.pipe';
 
 @Controller('blog-posts')
 export class BlogPostsController {
@@ -22,7 +23,12 @@ export class BlogPostsController {
   }
 
   @Patch(':id')
-  editBlogPost(@Param('id') id: number, @Body() body: IEdit) {
+  editBlogPost(@Param('id', PositiveIntPipe) id: number, @Body() body: IEdit) {
     return this.blogPostsService.editBlogPost(id, body);
+  }
+
+  @Delete(':id')
+  deleteBlogPost(@Param('id', PositiveIntPipe) id: number) {
+    return this.blogPostsService.deleteBlogPost(id)
   }
 }

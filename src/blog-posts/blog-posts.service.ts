@@ -30,4 +30,14 @@ export class BlogPostsService {
     blogPost = {...blogPost, ...body}
     return this.repo.save(blogPost)
   }
+  async deleteBlogPost(id: number) {
+    const blogPost = await this.repo.findOne({ where: { id } })
+    console.log({blogPost})
+    if (!blogPost) {
+      throw new Error('Blog post not found')
+    }
+    blogPost.deletedAt = new Date()
+    this.repo.save(blogPost)
+    return "Deleted Successfully"
+  }
 }

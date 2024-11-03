@@ -1,0 +1,14 @@
+GET http://localhost:5000/blog-posts
+
+###
+POST http://localhost:5000/blog-posts
+content-type: application/json
+
+{
+    "title": "ACB",
+    "content": "YOYP",
+    "writtenBy": "Usama"
+}
+
+###
+DELETE http://localhost:5000/blog-posts/4
