@@ -1,6 +1,6 @@
 export interface IEdit {
     title?: string;
     content?: string;
-    writtenBy?: string;
-    isPublished?: boolean;
+    written_by?: string;
+    is_published?: boolean;
 }

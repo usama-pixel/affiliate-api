@@ -11,5 +11,9 @@ export class CreateBlogPostDto {
 
     @IsString()
     @IsNotEmpty()
-    writtenBy: string;
+    written_by: string;
+
+    @IsString()
+    @IsNotEmpty()
+    image_url: string
 }

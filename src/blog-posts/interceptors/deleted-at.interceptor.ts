@@ -12,6 +12,9 @@ export class DeletedAtInterceptor implements NestInterceptor {
                 if (data && data.deletedAt === null) {
                     return data
                 }
+                if (data && !('deletedAt' in data)) {
+                    return data;
+                }
                 return null;
             })
         )

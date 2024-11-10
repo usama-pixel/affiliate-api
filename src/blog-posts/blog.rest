@@ -1,14 +1,27 @@
 GET http://localhost:5000/blog-posts
 
 ###
+GET http://localhost:5000/blog-posts?is_main_post=true
+###
 POST http://localhost:5000/blog-posts
 content-type: application/json
 
 {
-    "title": "ACB",
-    "content": "YOYP",
-    "writtenBy": "Usama"
+    "title": "Featured",
+    "content": "CHeck",
+    "written_by": "Jane Austen",
+    "image_url": "https://i.ytimg.com/vi/0MIw4xzxcTU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBshh9qSW5ZZ9dXypJM9uJdDBOtXg"
 }
 
+###
+PATCH http://localhost:5000/blog-posts/17
+content-type: application/json
+
+{
+    "featured": true
+}
+
+    # "is_main_post": true
+    # "image_url": "https://m.media-amazon.com/images/M/MV5BZDgwZjJjODktZjhiNy00MjljLWIxNmEtNmRmNDI2MWFhZmIxXkEyXkFqcGc@._V1_.jpg"
 ###
 DELETE http://localhost:5000/blog-posts/4

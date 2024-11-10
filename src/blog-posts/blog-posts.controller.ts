@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { BlogPostsService } from './blog-posts.service';
 import { IEdit } from './interfaces/blog-post.interface';
 import { CreateBlogPostDto } from './dtos/create-blog-post.dto';
@@ -11,14 +11,13 @@ export class BlogPostsController {
   ) {}
   
   @Get()
-  getBlogs() {
-    return this.blogPostsService.getBlogPosts()
+  getBlogs(@Query() query: any) {
+    return this.blogPostsService.getBlogPosts(query)
   }
 
   @Post()
   @UsePipes(new ValidationPipe({ whitelist: true }))
   createBlogPost(@Body() createBlogPost: CreateBlogPostDto) {
-    console.log({ createBlogPost })
     return this.blogPostsService.createBlogPost(createBlogPost);
   }
 

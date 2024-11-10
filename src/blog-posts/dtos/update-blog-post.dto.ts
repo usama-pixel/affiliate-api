@@ -11,5 +11,13 @@ export class UpdateBlogPostDto {
 
     @IsString()
     @IsOptional()
-    writtenBy: string;
+    written_by: string;
+
+    @IsString()
+    @IsOptional()
+    is_published: boolean;
+
+    @IsString()
+    @IsOptional()
+    featured: boolean;
 }

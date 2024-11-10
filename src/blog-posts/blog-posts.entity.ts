@@ -8,17 +8,42 @@ export class BlogPost {
   @Column()
   title: string;
 
+  @Column({
+    nullable: true
+  })
+  image_url: string
+  
   @Column()
   content: string;
 
   @Column()
-  writtenBy: string; // will be foreign key in future
+  written_by: string; // will be foreign key in future
   
   @Column({
     default: false
   })
-  isPublished: boolean;
+  is_published: boolean;
 
+  @Column({
+    default: false
+  })
+  featured: boolean;
+
+  @Column({
+    default: false
+  })
+  is_main_post: boolean;
+
+  @Column({
+    default: 0
+  })
+  view_count: number
+
+  @Column({
+    default: false
+  })
+  is_popular: boolean
+  
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
 
