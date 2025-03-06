@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BlogPost } from './blog-posts.entity'
+import { BlogPost } from './entities/blog-posts.entity'
 import { IEdit } from './interfaces/blog-post.interface';
 import { CreateBlogPostDto } from './dtos/create-blog-post.dto';
 
@@ -29,11 +29,20 @@ export class BlogPostsService {
     })
   }
 
+  async getBlogPost(id: number) {
+    const blogPost = await this.repo.findOne({ where: { id } })
+    if (!blogPost) {
+      throw new NotFoundException('Blog post not found')
+    }
+    return blogPost
+  }
+
   async createBlogPost(createBlogDto: CreateBlogPostDto) {
     const blogPost = this.repo.create({...createBlogDto})
     this.repo.save(blogPost)
     return blogPost
   }
+
   async editBlogPost(id: number, body: IEdit) {
     let blogPost = await this.repo.findOne({ where: { id } })
     if (!blogPost) {
@@ -42,6 +51,7 @@ export class BlogPostsService {
     blogPost = {...blogPost, ...body}
     return this.repo.save(blogPost)
   }
+
   async deleteBlogPost(id: number) {
     const blogPost = await this.repo.findOne({ where: { id } })
     console.log({blogPost})

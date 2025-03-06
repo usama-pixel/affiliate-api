@@ -15,6 +15,11 @@ export class BlogPostsController {
     return this.blogPostsService.getBlogPosts(query)
   }
 
+  @Get(':id')
+  getBlog(@Param('id', PositiveIntPipe) id: number) {
+    return this.blogPostsService.getBlogPost(id)
+  }
+  
   @Post()
   @UsePipes(new ValidationPipe({ whitelist: true }))
   createBlogPost(@Body() createBlogPost: CreateBlogPostDto) {

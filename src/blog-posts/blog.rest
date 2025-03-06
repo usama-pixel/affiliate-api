@@ -1,6 +1,9 @@
 GET http://localhost:5000/blog-posts
 
 ###
+GET http://localhost:5000/blog-posts/3
+
+###
 GET http://localhost:5000/blog-posts?is_main_post=true
 ###
 POST http://localhost:5000/blog-posts

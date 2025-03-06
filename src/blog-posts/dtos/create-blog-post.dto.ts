@@ -9,6 +9,15 @@ export class CreateBlogPostDto {
     @IsNotEmpty()
     content: string;
 
+    @IsNotEmpty()
+    is_main_post: boolean
+
+    @IsNotEmpty()
+    featured: boolean
+
+    @IsNotEmpty()
+    is_popular: boolean
+    
     @IsString()
     @IsNotEmpty()
     written_by: string;
