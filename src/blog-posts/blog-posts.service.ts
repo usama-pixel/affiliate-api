@@ -62,4 +62,8 @@ export class BlogPostsService {
     this.repo.save(blogPost)
     return "Deleted Successfully"
   }
+
+  getPostCount() {
+    return this.repo.count()
+  }
 }

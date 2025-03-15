@@ -14,6 +14,11 @@ export class BlogPostsController {
   getBlogs(@Query() query: any) {
     return this.blogPostsService.getBlogPosts(query)
   }
+ 
+  @Get('count')
+  getPostCount() {
+    return this.blogPostsService.getPostCount()
+  }
 
   @Get(':id')
   getBlog(@Param('id', PositiveIntPipe) id: number) {

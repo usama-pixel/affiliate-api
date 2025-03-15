@@ -28,3 +28,6 @@ content-type: application/json
     # "image_url": "https://m.media-amazon.com/images/M/MV5BZDgwZjJjODktZjhiNy00MjljLWIxNmEtNmRmNDI2MWFhZmIxXkEyXkFqcGc@._V1_.jpg"
 ###
 DELETE http://localhost:5000/blog-posts/4
+
+###
+GET http://localhost:5000/blog-posts/count
